@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<base href="/">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="styles/MODULENAME.css">
+	</head>
+	<body ng-app="demoApp">
+
+		<h1>Nodes Module Starter Kit bids you welcome!</h1>
+		<hr/>
+		<p>Before you get started writing your next Angular Module, you need to set up a few things:</p>
+		<ol>
+			<li>Come up with an awesome name for your module</li>
+			<li>Rename the files in the <pre>src/</pre> folder to your awesome name</li>
+			<li>Fill out the information in <pre>package.json</pre> and <pre>bower.json</pre> (name, description, etc.)</li>
+			<li>Correct the references in index.html to the styles and scripts</li>
+			<li>Create a repository for your module on Github</li>
+		</ol>
+		<hr/>
+		<p>When you are ready to release your package to the world, run <pre>grunt build</pre> - this will copy the scss files,
+		and concatinate the javascript files.</p>
+		<p>A more comprehensive guide for submitting your package to Bower is in the works.</p>
+		<hr/>
+		<p>We also recommend doing your fellow developers a few favors:</p>
+		<ul>
+			<li>Write a guide on how to use your module in the readme.md file</li>
+			<li>Write a few demo examples so people can see the intended use</li>
+			<li>If you want to go all the way, make a Github Pages branch, this will give your module a little home on the web where you can host your demos</li>
+		</ul>
+
+		<module-name></module-name>
+
+		<!-- bower:js -->
+		<script src="bower_components/angular/angular.js"></script>
+		<!-- endbower -->
+
+		<script src="src/MODULENAME.module.js"></script>
+		<script src="src/MODULENAME.directive.js"></script>
+
+		<script>
+			angular.module('demoApp', ['MODULENAME']);
+		</script>
+	</body>
+</html>

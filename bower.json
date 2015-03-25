@@ -1,0 +1,24 @@
+{
+	"name": "MODULENAME",
+	"version": "0.0.0",
+	"description": "",
+	"homepage": "",
+	"author": "",
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"main": [
+		""
+	],
+	"ignore": [
+		"demo"
+	],
+	"dependencies": {
+		"angular": "^1.3.0"
+	},
+	"devDependencies": {
+		"angular-mocks": "1.3.0",
+		"angular-scenario": "1.3.0"
+	}
+}
