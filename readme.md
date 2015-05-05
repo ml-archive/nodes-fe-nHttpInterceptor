@@ -1,23 +1,43 @@
-# Nodes Module Starter Kit bids you welcome!
+# Nodes http inceptor
 
-Before you get started writing your next Angular Module, you need to set up a few things:
 
-- Come up with an awesome name for your module
-- Rename the files in the `src/` folder to your awesome name
-- Fill out the information in `package.json` and `bower.json` (name, description, etc.)
-- Correct the references in `index.html` to the styles and scripts
-- Create a repository for your module on Github
+## Implement it in config.js
 
-------
+```javascript
+(function () {
+	'use strict';
 
-When you are ready to release your package to the world, run `grunt build` - this will copy the scss files, and concatinate the javascript files.
+	var core = angular.module('config', ['nHttpInceptor']);
 
-A more comprehensive guide for submitting your package to Bower is in the works.
 
------
+	core.config(configure);
 
-### We also recommend doing your fellow developers a few favors:
+	/* @ngInject */
+	function configure($httpProvider, nhttpinceptorProvider) {
 
-- Write a guide on how to use your module in the `readme.md` file
-- Write a few demo examples so people can see the intended use
-- If you want to go all the way, make a Github Pages branch, this will give your module a little home on the web where you can host your demos
+		/* nhttpinceptor */
+
+		// Set up the error messages custom
+		// You can set error401 to a translate key, fx "errorRandomMsg". It will then output the translate key,
+		// and if it does not exist, then it will output "errorRandomMsg"
+		nhttpinceptorProvider.configure({
+			error401: "Du har ikke adgang til dette."
+		});
+
+		//The inceptor
+		$httpProvider.interceptors.push(function($q, nHttpInceptor) {
+			return {
+				responseError: function(res) {
+
+					nHttpInceptor.errorHandle(res.status);
+
+					return $q.reject(res);
+				}
+			};
+		});
+		/* nhttpinceptor */
+
+	}
+
+})();
+```
