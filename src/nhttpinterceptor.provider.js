@@ -2,11 +2,12 @@
 	'use strict';
 
 	angular
-		.module('nHttpInceptor.provider', [])
-		.provider('nhttpinceptor', nhttpinceptor);
+		.module('nHttpInterceptor.provider', [])
+		.provider('nHttpInterceptor', interceptorProvider);
 
 	/* @ngInject */
-	function nhttpinceptor() {
+	function interceptorProvider() {
+		/*jshint validthis: true */
 
 		/* Defaults messages on error */
 		var defaults = {
@@ -32,6 +33,6 @@
 				errorMessages: defaults
 			};
 		}];
-	};
+	}
 
 })();

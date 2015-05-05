@@ -9,40 +9,110 @@
 	</head>
 	<body ng-app="demoApp">
 
-		<h1>Nodes Module Starter Kit bids you welcome!</h1>
-		<hr/>
-		<p>Before you get started writing your next Angular Module, you need to set up a few things:</p>
-		<ol>
-			<li>Come up with an awesome name for your module</li>
-			<li>Rename the files in the <pre>src/</pre> folder to your awesome name</li>
-			<li>Fill out the information in <pre>package.json</pre> and <pre>bower.json</pre> (name, description, etc.)</li>
-			<li>Correct the references in index.html to the styles and scripts</li>
-			<li>Create a repository for your module on Github</li>
-		</ol>
-		<hr/>
-		<p>When you are ready to release your package to the world, run <pre>grunt build</pre> - this will copy the scss files,
-		and concatinate the javascript files.</p>
-		<p>A more comprehensive guide for submitting your package to Bower is in the works.</p>
-		<hr/>
-		<p>We also recommend doing your fellow developers a few favors:</p>
-		<ul>
-			<li>Write a guide on how to use your module in the readme.md file</li>
-			<li>Write a few demo examples so people can see the intended use</li>
-			<li>If you want to go all the way, make a Github Pages branch, this will give your module a little home on the web where you can host your demos</li>
-		</ul>
-
-		<module-name></module-name>
+		<h1>nHttpInterceptor Module</h1>
+		<p>Test it:</p>
+		<div ng-controller="demoCtrl as demo">
+			<button ng-click="demo.causeError()">Lav en fejl!</button>
+		</div>
+		<nodes-messages-wrapper></nodes-messages-wrapper>
 
 		<!-- bower:js -->
 		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
 		<!-- endbower -->
 
-		<script src="src/nhttpinceptor.module.js"></script>
-		<script src="src/nhttpinceptor.provider.js"></script>
-		<script src="src/nhttpinceptor.factory.js"></script>
+		<script src="src/nhttpinterceptor.module.js"></script>
+		<script src="src/nhttpinterceptor.provider.js"></script>
+		<script src="src/nhttpinterceptor.factory.js"></script>
+
+		<script src="nMessages.js"></script>
+
+		<!-- Create a fake backend -->
+		<script>
+			angular.module('fakeBackend', ['ngMockE2E'])
+					.run(function($httpBackend) {
+						// Some possible errors
+						var defaultErrors = {
+							304: '304',
+							401: '401',
+							403: '403',
+							404: '404',
+							412: '412',
+							440: '440',
+							441: '441',
+							442: '442',
+							443: '443',
+							445: '445',
+							500: '500'
+						};
+						// Pick a random error
+						function pickRandomError() {
+							var result;
+							var count = 0;
+							for (var prop in defaultErrors) {
+								if(Math.random() < 1 / ++count) {
+									result = prop;
+								}
+							}
+							return result;
+						}
+
+						$httpBackend.whenGET('/create-error').respond(function(url) {
+							var errorCode = pickRandomError();
+							var errorMsg = defaultErrors[errorCode];
+							return [errorCode, errorMsg, {}];
+						});
+
+					});
+		</script>
 
 		<script>
-			angular.module('demoApp', ['nhttpinceptor']);
+			angular.module('demoApp', ['nHttpInterceptor', 'messages', 'fakeBackend']);
+
+			// Make sure the translate object is available on the $rootScope
+			// Fill out one key, to show that translate keys will always supercede any defaults
+			angular.module('demoApp')
+					.run(function($rootScope) {
+						$rootScope.translate = {
+							error304: 'I came from the translate object!'
+						};
+					});
+
+			// Setup nHttpInterceptor
+			angular.module('demoApp')
+					.config(configure);
+			function configure($httpProvider, nHttpInterceptorProvider) {
+
+				// Example: override default message
+				nHttpInterceptorProvider.configure({
+					error440: 'Intet accepterings hovede.'
+				});
+
+				// Setup interceptors
+				$httpProvider.interceptors.push(function($q, nHttpInterceptorFactory) {
+					return {
+						responseError: function(res) {
+
+							nHttpInterceptorFactory.errorHandle(res.status);
+
+							return $q.reject(res);
+						}
+					};
+				});
+
+			}
+
+			// Create a demo controller for testing purposes
+			angular.module('demoApp')
+					.controller('demoCtrl', demoCtrl);
+			function demoCtrl($http) {
+				var vm = this;
+				vm.causeError = function() {
+					$http.get('/create-error');
+				}
+			}
 		</script>
 	</body>
 </html>
