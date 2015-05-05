@@ -37,12 +37,18 @@
 		<script src="bower_components/angular/angular.js"></script>
 		<!-- endbower -->
 
-		<script src="src/nhttpinceptor.module.js"></script>
-		<script src="src/nhttpinceptor.provider.js"></script>
-		<script src="src/nhttpinceptor.factory.js"></script>
+		<script src="src/nhttpinterceptor.module.js"></script>
+		<script src="src/nhttpinterceptor.provider.js"></script>
+		<script src="src/nhttpinterceptor.factory.js"></script>
 
 		<script>
-			angular.module('demoApp', ['nhttpinceptor']);
+			angular.module('demoApp', ['nHttpInterceptor']);
+
+			angular.module('demoApp')
+					.config(configure);
+			function configure($httpProvider, nHttpInterceptorProvider) {
+				console.log('greetings from config', nHttpInterceptorProvider);
+			}
 		</script>
 	</body>
 </html>

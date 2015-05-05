@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular
-		.module('nHttpInceptor.provider', [])
-		.provider('nhttpinceptor', nhttpinceptor);
+		.module('nHttpInterceptor.provider', [])
+		.provider('nHttpInterceptor', interceptor);
 
 	/* @ngInject */
-	function nhttpinceptor() {
+	function interceptor() {
 
 		/* Defaults messages on error */
 		var defaults = {
