@@ -6,7 +6,7 @@
 		.factory('nHttpInceptor', nHttpInceptor);
 
 	/* @ngInject */
-	function nHttpInceptor(nhttpinceptor, $rootScope) {
+	function nHttpInceptor(nhttpinceptor, $rootScope, messages) {
 
 		var service = {
 			errorHandle: errorHandle
@@ -21,9 +21,15 @@
 			/* Message it out */
 			/* If it exists in translate, then message it, or else message the string */
 			if($rootScope.translate[nhttpinceptor.errorMessages[getErrorMsg]]) {
-				console.log($rootScope.translate[nhttpinceptor.errorMessages[getErrorMsg]]);
+				messages.create({
+					type: 'alert',
+					content: $rootScope.translate[nhttpinceptor.errorMessages[getErrorMsg]]
+				})
 			} else {
-				console.log(nhttpinceptor.errorMessages[getErrorMsg]);
+				messages.create({
+					type: 'alert',
+					content: nhttpinceptor.errorMessages[getErrorMsg]
+				})
 			}
 		}
 	};

@@ -41,3 +41,7 @@
 
 })();
 ```
+
+
+## messages
+Messages(nMessages) is a part of the Nodes Galactic core.
