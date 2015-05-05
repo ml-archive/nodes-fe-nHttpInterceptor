@@ -7,6 +7,7 @@
 
 	/* @ngInject */
 	function interceptor() {
+		/*jshint validthis: true */
 
 		/* Defaults messages on error */
 		var defaults = {
