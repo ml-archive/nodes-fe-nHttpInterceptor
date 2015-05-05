@@ -3,10 +3,10 @@
 
 	angular
 		.module('nHttpInterceptor.factory', ['nHttpInterceptor.provider'])
-		.factory('nHttpInterceptor', nHttpInterceptor);
+		.factory('nHttpInterceptorFactory', interceptorFactory);
 
 	/* @ngInject */
-	function nHttpInterceptor(nHttpInterceptor, $rootScope, messages) {
+	function interceptorFactory(nHttpInterceptor, $rootScope, messages) {
 
 		var service = {
 			errorHandle: errorHandle
@@ -16,7 +16,7 @@
 
 		function errorHandle(statuscode) {
 			/* Convert it so match the object with keys and errormessages in */
-			var getErrorMsg = "error" + statuscode;
+			var getErrorMsg = 'error' + statuscode;
 
 			/* Message it out */
 			/* If it exists in translate, then message it, or else message the string */
@@ -24,14 +24,14 @@
 				messages.create({
 					type: 'alert',
 					content: $rootScope.translate[nHttpInterceptor.errorMessages[getErrorMsg]]
-				})
+				});
 			} else {
 				messages.create({
 					type: 'alert',
 					content: nHttpInterceptor.errorMessages[getErrorMsg]
-				})
+				});
 			}
 		}
-	};
+	}
 
 })();

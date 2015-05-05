@@ -3,10 +3,10 @@
 
 	angular
 		.module('nHttpInterceptor.provider', [])
-		.provider('nHttpInterceptor', interceptor);
+		.provider('nHttpInterceptor', interceptorProvider);
 
 	/* @ngInject */
-	function interceptor() {
+	function interceptorProvider() {
 		/*jshint validthis: true */
 
 		/* Defaults messages on error */
@@ -33,6 +33,6 @@
 				errorMessages: defaults
 			};
 		}];
-	};
+	}
 
 })();

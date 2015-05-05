@@ -47,7 +47,23 @@
 			angular.module('demoApp')
 					.config(configure);
 			function configure($httpProvider, nHttpInterceptorProvider) {
-				console.log('greetings from config', nHttpInterceptorProvider);
+				// Set up the error messages custom
+				// You can set error401 to a translate key, fx "errorRandomMsg". It will then output the translate key,
+				// and if it does not exist, then it will output "errorRandomMsg"
+				nHttpInterceptorProvider.configure({
+					error401: "Du har ikke adgang til dette."
+				});
+				$httpProvider.interceptors.push(function($q, nHttpInterceptorFactory) {
+					return {
+						responseError: function(res) {
+
+							nHttpInterceptorFactory.errorHandle(res.status);
+
+							return $q.reject(res);
+						}
+					};
+				});
+
 			}
 		</script>
 	</body>
