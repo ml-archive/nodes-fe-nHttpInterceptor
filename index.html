@@ -35,14 +35,18 @@
 
 		<!-- bower:js -->
 		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<!-- endbower -->
 
 		<script src="src/nhttpinterceptor.module.js"></script>
 		<script src="src/nhttpinterceptor.provider.js"></script>
 		<script src="src/nhttpinterceptor.factory.js"></script>
 
+		<script src="nMessages.js"></script>
+
 		<script>
-			angular.module('demoApp', ['nHttpInterceptor']);
+			angular.module('demoApp', ['nHttpInterceptor', 'messages']);
 
 			angular.module('demoApp')
 					.config(configure);
