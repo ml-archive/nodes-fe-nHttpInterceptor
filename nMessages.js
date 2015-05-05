@@ -18,7 +18,7 @@
 		var directive = {
 			restrict: 'EA',
 			transclude: true,
-			templateUrl: 'src/messages.message.template.html',
+			templateUrl: 'messages.message.template.html',
 			scope: {
 				message: '=nodesMessagesMessage'
 			},
@@ -30,13 +30,13 @@
 		function link(scope, element) {
 			if (scope.message.dismissOnTimeout) {
 				$timeout(function () {
-					nodesMessages.dismiss(scope.message.id);
+					messages.dismiss(scope.message.id);
 				}, scope.message.timeout);
 			}
 
 			if (scope.message.dismissOnClick) {
 				element.bind('click', function () {
-					nodesMessages.dismiss(scope.message.id);
+					messages.dismiss(scope.message.id);
 					scope.$apply();
 				});
 			}
@@ -44,12 +44,12 @@
 
 		function controller($scope, nodesMessages) {
 			$scope.dismiss = function () {
-				nodesMessages.dismiss($scope.message.id);
+				messages.dismiss($scope.message.id);
 			};
 		}
 
 	}
-	message.$inject = ["nodesMessages", "$timeout"];
+	message.$inject = ["messages", "$timeout"];
 
 })();
 
@@ -106,7 +106,6 @@
 			this.dismissOnClick = defaults.dismissOnClick;
 
 			angular.extend(this, msg);
-			console.log(this)
 
 		}
 
@@ -179,7 +178,7 @@
 			restrict: 'EA',
 			replace: true,
 			compile: compile,
-			templateUrl: 'src/messages.wrapper.template.html'
+			templateUrl: 'messages.wrapper.template.html'
 		};
 		return directive;
 
@@ -187,15 +186,15 @@
 
 			return function(scope) {
 				// pænere end ..Pos!
-				scope.hPos = nodesMessages.settings.horizontalPosition;
-				scope.vPos = nodesMessages.settings.verticalPosition;
+				scope.hPos = messages.settings.horizontalPosition;
+				scope.vPos = messages.settings.verticalPosition;
 
-				scope.messages = nodesMessages.messages;
+				scope.messages = messages.messages;
 			};
 		}
 
 	}
-	wrapper.$inject = ["nodesMessages"];
+	wrapper.$inject = ["messages"];
 
 })();
 

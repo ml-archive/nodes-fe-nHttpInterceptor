@@ -20,10 +20,10 @@
 
 			/* Message it out */
 			/* If it exists in translate, then message it, or else message the string */
-			if($rootScope.translate[nHttpInterceptor.errorMessages[getErrorMsg]]) {
+			if($rootScope.translate[getErrorMsg]) {
 				messages.create({
 					type: 'alert',
-					content: $rootScope.translate[nHttpInterceptor.errorMessages[getErrorMsg]]
+					content: $rootScope.translate[getErrorMsg]
 				});
 			} else {
 				messages.create({
