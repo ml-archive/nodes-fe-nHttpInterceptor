@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('nHttpInterceptor.provider', [])
+		.module('nCore.nHttpInterceptor.provider', [])
 		.provider('nHttpInterceptor', interceptorProvider);
 
 	/* @ngInject */

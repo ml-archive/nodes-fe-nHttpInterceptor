@@ -128,6 +128,9 @@ module.exports = function (grunt) {
 				dest: '.tmp/scripts/templates.js',
 				options: {
 					module: '<%= pkg.name %>',
+					url: function(url) {
+						return url.replace('dist/', '');
+					},
 					htmlmin: {
 						collapseBooleanAttributes: false,
 						collapseWhitespace: false,
@@ -150,7 +153,11 @@ module.exports = function (grunt) {
 				banner: '<%= meta.banner %>'
 			},
 			dist: {
-				src: ['.tmp/scripts/*.js'],
+				src: [
+					'.tmp/scripts/*.module.js',
+					'.tmp/scripts/*.provider.js',
+					'.tmp/scripts/*.factory.js'
+				],
 				dest: '<%= yeoman.dist %>/<%= pkg.name %>.js'
 			}
 		},
@@ -182,11 +189,11 @@ module.exports = function (grunt) {
 		// Automatically inject Bower components into the app
 		wiredep: {
 			options: {
-				cwd: ''
+				cwd: '',
+				devDependencies: true
 			},
 			app: {
-				src: ['index.html'],
-				ignorePath: /\.\.\//
+				src: ['index.html']
 			}
 		},
 		// Empties folders to start fresh

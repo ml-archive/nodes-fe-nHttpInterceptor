@@ -14,20 +14,23 @@
 		<div ng-controller="demoCtrl as demo">
 			<button ng-click="demo.causeError()">Lav en fejl!</button>
 		</div>
-		<nodes-messages-wrapper></nodes-messages-wrapper>
+		<n-messages-wrapper></n-messages-wrapper>
 
 		<!-- bower:js -->
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+		<script src="bower_components/nLogger/dist/nLogger.js"></script>
+		<script src="bower_components/nExceptionHandler/dist/nExceptionHandler.js"></script>
+		<script src="bower_components/nMessages/dist/nMessages.js"></script>
+		<script src="bower_components/angular-scenario/angular-scenario.js"></script>
 		<!-- endbower -->
 
-		<script src="src/nhttpinterceptor.module.js"></script>
-		<script src="src/nhttpinterceptor.provider.js"></script>
-		<script src="src/nhttpinterceptor.factory.js"></script>
-
-		<script src="nMessages.js"></script>
+		<!--<script src="src/nHttpInterceptor.module.js"></script>-->
+		<!--<script src="src/nHttpInterceptor.provider.js"></script>-->
+		<!--<script src="src/nHttpInterceptor.factory.js"></script>-->
+		<script src="dist/nHttpInterceptor.js"></script>
 
 		<!-- Create a fake backend -->
 		<script>
@@ -69,7 +72,13 @@
 		</script>
 
 		<script>
-			angular.module('demoApp', ['nHttpInterceptor', 'messages', 'fakeBackend']);
+			//debug_env stub
+			angular.module('DEBUG_ENV', [])
+					.constant('DEBUG_ENV', true);
+			//ncore stub
+			angular.module('nCore', ['nCore.nLogger', 'nCore.nMessages', 'nCore.nHttpInterceptor']);
+
+			angular.module('demoApp', ['nCore', 'fakeBackend']);
 
 			// Make sure the translate object is available on the $rootScope
 			// Fill out one key, to show that translate keys will always supercede any defaults
