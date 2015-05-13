@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular
-		.module('nHttpInterceptor.factory', ['nHttpInterceptor.provider'])
+		.module('nCore.nHttpInterceptor.factory', ['nCore.nHttpInterceptor.provider'])
 		.factory('nHttpInterceptorFactory', interceptorFactory);
 
 	/* @ngInject */
-	function interceptorFactory(nHttpInterceptor, $rootScope, messages) {
+	function interceptorFactory(nHttpInterceptor, $rootScope, nLogger) {
 
 		var service = {
 			errorHandle: errorHandle
@@ -21,15 +21,9 @@
 			/* Message it out */
 			/* If it exists in translate, then message it, or else message the string */
 			if($rootScope.translate[getErrorMsg]) {
-				messages.create({
-					type: 'alert',
-					content: $rootScope.translate[getErrorMsg]
-				});
+				nLogger.error($rootScope.translate[getErrorMsg]);
 			} else {
-				messages.create({
-					type: 'alert',
-					content: nHttpInterceptor.errorMessages[getErrorMsg]
-				});
+				nLogger.error(nHttpInterceptor.errorMessages[getErrorMsg]);
 			}
 		}
 	}

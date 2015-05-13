@@ -1,5 +1,5 @@
 (function() {
 	'use strict';
 
-	angular.module('nHttpInterceptor', ['nHttpInterceptor.provider', 'nHttpInterceptor.factory', 'messages']);
+	angular.module('nCore.nHttpInterceptor', ['nCore.nHttpInterceptor.provider', 'nCore.nHttpInterceptor.factory', 'nCore.nLogger']);
 })();

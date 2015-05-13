@@ -1,12 +1,12 @@
 {
-	"name": "nHttpInceptor",
+	"name": "nHttpInterceptor",
 	"version": "1.0.0",
 	"description": "",
 	"homepage": "",
 	"author": "Tommy Jepsen",
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/nodes-galactic/nHttpInterceptor"
 	},
 	"licenses": [
 		{
