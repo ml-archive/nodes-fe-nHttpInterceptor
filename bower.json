@@ -9,7 +9,7 @@
     "url": "https://github.com/nodes-galactic/nHttpInterceptor"
   },
   "main": [
-    "dist/"
+    "dist/nHttpInterceptor.js"
   ],
   "ignore": [
     "demo"
