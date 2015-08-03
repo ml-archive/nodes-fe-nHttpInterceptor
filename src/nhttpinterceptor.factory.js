@@ -22,7 +22,7 @@
 			/* If it exists in translate, then message it, or else message the string */
 			if($rootScope.translate[getErrorMsg]) {
 				nLogger.error($rootScope.translate[getErrorMsg]);
-			} else {
+			} else if(nHttpInterceptor.errorMessages[getErrorMsg]) {
 				nLogger.error(nHttpInterceptor.errorMessages[getErrorMsg]);
 			}
 		}
