@@ -1,0 +1,22 @@
+sudo: false
+language: node_js
+cache:
+  directories:
+  - node_modules
+notifications:
+  email: false
+node_js:
+- '4'
+before_install:
+- npm i -g npm@^2.0.0
+before_script:
+- npm prune
+after_success:
+- npm run semantic-release
+- npm run coveralls
+branches:
+  only:
+  - master
+env:
+  global:
+    secure: zzRO74bwJR/q1ML2qf6IUVVCwU+aYRaHFKCW0mfaKCXdykAYTLaC7CHzShZRYBacPty6IN4uhSuWpekGSsgpA830Nkp2B7Tei3pwT0eGk+goS0LjzLVsgqSHxp8yAQKDZdhAtRDxkuIBfiuem5U/umY0NMLif6eQrmKMjFE/n7wHojoMudN1VwqAbD8Xkg1fNBJYxt4tWqmluId0yktwHZOSGM9gxNwmKUPPsO49b7lQuXckv4NiwKS4wfolIxjjuDNix6c4ksvLsZtChzYlE07XPM49PTDrXPN41p3B+iBX1bvYO5GqCdfnHqK4sn0aw2Hp/ZRW3Wh9W2t4YrjQXtV/19B+fDu6vLkh4g0u2vNBPnbzAQJm94EHUu4F5CzzfAfos8V7i3lCrY4sznmwz7zBCxAnqOCzhXaoRD18sCr5yVU3Q8SKlK69jq9Xaxkzg0V/RHwzZRDkHZ2TVCrhHv0gPkvTPSdS+/b2GZJMtRSUCHXNvND+jRpy68LGCHUsUUW2rNFKnMSxcurpgJfpUujPURkiYvgIdxdGEGf6DLYu+ZBQvd66YW29kqkkn9Io2+CpVenjc6SqJQ/T+SNXZ5C+FY20ImG42IYqxdEWXJxdDhuDldwqk5x2KKE/2Dk7B8HKF/TepcM3beNdpNlYjr2HdLh3l70xzxNPOqzU3uo=
