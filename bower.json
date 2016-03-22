@@ -15,10 +15,8 @@
     "demo"
   ],
   "dependencies": {
-    "angular": "*",
     "angular-sanitize": "*",
     "angular-animate": "*",
-    "angular-mocks": "*",
     "nLogger": "*",
     "nExceptionHandler": "*",
     "nMessages": "*"
