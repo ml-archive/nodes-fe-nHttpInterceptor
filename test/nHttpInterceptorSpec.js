@@ -1,24 +1,24 @@
-describe('nHttpInterceptor', function() {
+describe('nHttpInterceptor', () => {
 
-	var nHttpInterceptorProvider;
-	var nHttpInterceptor;
+	let nHttpInterceptorProvider;
+	let nHttpInterceptor;
 
-	beforeEach(function() {
+	beforeEach(() => {
 		module('nCore.nHttpInterceptor.provider');
 	});
 
 	// What should the feature do?
-	it('should return defaults', function() {
+	it('should return defaults', () => {
 
-		inject(['nHttpInterceptor', function(_nHttpInterceptor) {
+		inject(['nHttpInterceptor', (_nHttpInterceptor) => {
 			nHttpInterceptor = _nHttpInterceptor; // to use the instance in other parts
 		}]);
 
 		// What is the actual output?
-		var actual = nHttpInterceptor;
+		const actual = nHttpInterceptor;
 
 		// What is the expected output?
-		var expected = {
+		const expected = {
 			errorMessages: {
 				error304: 'Not modified',
 				error401: 'Unauthorized',
@@ -38,20 +38,20 @@ describe('nHttpInterceptor', function() {
 	});
 
 	// What should the feature do?
-	it('should configure custom error message', function() {
+	it('should configure custom error message', () => {
 
 		// load the provider with module to be able to call its configuration methods
-		module(['nHttpInterceptorProvider', function(_nHttpInterceptorProvider) {
+		module(['nHttpInterceptorProvider', (_nHttpInterceptorProvider) => {
 			nHttpInterceptorProvider = _nHttpInterceptorProvider; // to use the provider in other parts
 			nHttpInterceptorProvider.configure({error0: 'Oops! Something went wrong'});
 		}]);
 
-		inject(['nHttpInterceptor', function(_nHttpInterceptor) {
+		inject(['nHttpInterceptor', (_nHttpInterceptor) => {
 			nHttpInterceptor = _nHttpInterceptor; // to use the instance in other parts
 		}]);
 
 		// What is the actual output?
-		var actual = nHttpInterceptor;
+		const actual = nHttpInterceptor;
 
 		// What is the expected output?
 		expect(actual.errorMessages.error0).toBeDefined();
