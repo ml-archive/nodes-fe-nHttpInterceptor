@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/nodes-frontend/nHttpInterceptor.svg?branch=master)](https://travis-ci.org/nodes-frontend/nHttpInterceptor)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Coverage Status](https://coveralls.io/repos/github/nodes-frontend/nHttpInterceptor/badge.svg?branch=master)](https://coveralls.io/github/nodes-frontend/nHttpInterceptor?branch=master)
+[![devDependency Status](https://david-dm.org/nodes-frontend/nHttpInterceptor/dev-status.svg)](https://david-dm.org/nodes-frontend/nHttpInterceptor#info=devDependencies)
+[![Dependency Status](https://david-dm.org/nodes-frontend/nHttpInterceptor.svg)](https://david-dm.org/nodes-frontend/nHttpInterceptor)
 
 ## Implement it in config.js
 
