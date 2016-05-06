@@ -1,7 +1,5 @@
 (function () {
 	'use strict';
-
-	// TRY OUT SEMANTIC-RELEASE
 	
 	angular
 		.module('nCore.nHttpInterceptor.factory', ['nCore.nHttpInterceptor.provider'])
